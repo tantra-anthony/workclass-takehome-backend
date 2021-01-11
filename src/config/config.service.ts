@@ -20,10 +20,17 @@ interface EnvConfig {
 
 @Injectable()
 export class ConfigService {
-  private readonly envConfig: EnvConfig;
+  private readonly envConfig: EnvConfig = {};
 
   constructor() {
     const filePath = path.join(appRoot.path, ENV_FILE_NAME);
+    // checks file
+    const exists = fs.existsSync(filePath);
+    
+    if (!exists) {
+      return;
+    }
+
     const env = fs.readFileSync(filePath);
     const conf = dotenv.parse(env);
     this.envConfig = conf;

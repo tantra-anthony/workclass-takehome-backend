@@ -15,6 +15,6 @@ async function bootstrap() {
   SwaggerModule.setup('docs', app, document);
 
   app.useGlobalPipes(new ValidationPipe({ disableErrorMessages: false }));
-  await app.listen(5000);
+  await app.listen(3000);
 }
 bootstrap();
