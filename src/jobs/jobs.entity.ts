@@ -28,7 +28,7 @@ export class Job {
   })
   @ManyToOne(() => Company, (company) => company.jobs)
   @JoinColumn({ name: 'company_id' })
-  company: string;
+  company: Company;
 
   @ApiProperty({ name: 'companyId', type: 'number', example: 1 })
   @Column({ name: 'company_id', nullable: true })

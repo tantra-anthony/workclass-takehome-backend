@@ -37,7 +37,7 @@ export class JobsService {
       where: {
         id,
       },
-      relations: ['companies'],
+      relations: ['company'],
     });
 
     if (!job) {
