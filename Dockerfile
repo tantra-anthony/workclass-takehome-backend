@@ -21,6 +21,6 @@ COPY --from=builder /home/node/dist/ /home/node/dist/
 
 RUN npm ci
 
-EXPOSE 3000
+EXPOSE $PORT
 
 CMD ["npm", "run", "start:prod"]

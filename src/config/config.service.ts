@@ -26,7 +26,7 @@ export class ConfigService {
     const filePath = path.join(appRoot.path, ENV_FILE_NAME);
     // checks file
     const exists = fs.existsSync(filePath);
-    
+
     if (!exists) {
       return;
     }
