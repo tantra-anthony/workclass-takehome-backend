@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Job } from '../jobs/jobs.entity';
 import { Repository } from 'typeorm';
@@ -44,6 +44,10 @@ export class CompaniesService {
       .where('company.id = :id', { id })
       .leftJoinAndSelect('company.jobs', 'job')
       .getOne();
+
+    if (!company) {
+      throw new NotFoundException();
+    }
 
     return company.jobs;
   }
