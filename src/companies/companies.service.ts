@@ -28,7 +28,7 @@ export class CompaniesService {
 
     const limit = query.limit ? parseInt(query.limit, 10) : 50;
     const offset = query.offset ? parseInt(query.offset, 10) : 0;
-    qb.take(limit).offset(offset);
+    qb.take(limit).skip(offset);
 
     const [companies, count] = await qb.getManyAndCount();
 
