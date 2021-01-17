@@ -7,6 +7,7 @@ import { PORT_KEY } from './constants';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
   const opts = new DocumentBuilder()
     .setTitle('Workclass Takehome Swagger Docs')
     .setDescription('API documentation for Workclass takehome assignment')
