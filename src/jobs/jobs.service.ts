@@ -15,6 +15,7 @@ export class JobsService {
   async searchJobs(query: JobsSearchQueryParamDto): Promise<JobsSearchResult> {
     const qb = this.jobRepository
       .createQueryBuilder('job')
+      .leftJoinAndSelect('job.company', 'company')
       .where('job.id IS NOT NULL');
 
     if (query.keyword) {
