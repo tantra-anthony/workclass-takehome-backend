@@ -18,6 +18,7 @@ export class CompaniesService {
   ): Promise<CompaniesSearchResult> {
     const qb = this.companyRepository
       .createQueryBuilder('company')
+      .leftJoinAndSelect('company.jobs', 'jobs')
       .where('company.id IS NOT NULL');
 
     if (query.keyword) {
