@@ -18,7 +18,7 @@ export class CompaniesService {
   ): Promise<CompaniesSearchResult> {
     const qb = this.companyRepository
       .createQueryBuilder('company')
-      .leftJoinAndSelect('company.jobs', 'jobs')
+      .loadRelationCountAndMap('company.jobCount', 'company.jobs')
       .where('company.id IS NOT NULL');
 
     if (query.keyword) {
