@@ -52,4 +52,18 @@ export class CompaniesService {
 
     return company.jobs;
   }
+
+  async findCompanyById(id: string): Promise<Company> {
+    const company = await this.companyRepository
+      .createQueryBuilder('company')
+      .where('company.id = :id', { id })
+      .leftJoinAndSelect('company.jobs', 'job')
+      .getOne();
+
+    if (!company) {
+      throw new NotFoundException();
+    }
+
+    return company;
+  }
 }

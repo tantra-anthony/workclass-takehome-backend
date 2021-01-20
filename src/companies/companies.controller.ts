@@ -11,6 +11,7 @@ import {
   CompaniesByIdParamDto,
   CompaniesSearchQueryParamDto,
 } from './companies.dto';
+import { Company } from './companies.entity';
 import { CompaniesSearchResult } from './companies.interface';
 import { CompaniesService } from './companies.service';
 
@@ -47,5 +48,22 @@ export class CompaniesController {
   @Get(':id/jobs')
   async getCompanyJobsById(@Param() param: CompaniesByIdParamDto) {
     return this.companiesService.findCompanyJobsById(param.id);
+  }
+
+  @ApiParam({
+    name: 'id',
+    example: '1',
+    description: 'The Company ID that is a number',
+  })
+  @ApiOkResponse({
+    status: 200,
+    description: 'The company of interest',
+    type: Company,
+    isArray: true,
+  })
+  @ApiNotFoundResponse({ status: 404, description: 'Not found' })
+  @Get(':id')
+  async getCompanyById(@Param() param: CompaniesByIdParamDto) {
+    return this.companiesService.findCompanyById(param.id);
   }
 }
